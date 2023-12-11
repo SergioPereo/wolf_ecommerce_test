@@ -1,0 +1,21 @@
+version: '3.4'
+
+services:
+  postgres:
+      image: postgres:latest
+      restart: always
+      container_name: postgres
+      ports:
+          - 5432:5432
+      environment:
+        POSTGRES_USER: energy
+        POSTGRES_PASSWORD: energy
+        POSTGRES_DB: energy
+  api:
+    image: api
+    container_name: api
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+        - 80:80
